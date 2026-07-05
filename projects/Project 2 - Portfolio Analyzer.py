@@ -4,7 +4,6 @@ print("="*45)
 print("\t\tLOAD DATA")
 print("="*45)
 portfolio = pd.read_csv("data/portfolio.csv")
-# print(portfolio)
 print(portfolio.shape)
 portfolio.head()
 portfolio.info()
@@ -22,7 +21,7 @@ print("="*45)
 print("\t\tPORTFOLIO SUMMARY")
 print("="*45)
 
-print("Total Stocks : ",portfolio.shape[0])
+print("Total Stocks :current Value ",portfolio.shape[0])
 
 total_invested = portfolio["Invested Amount"].sum()
 print(f"Total Invested :  ₹ {total_invested:,.2f}")
@@ -57,3 +56,21 @@ print("-"*45)
 print("Stock                      : ", worst["Stock"])
 print("Return %               : ", worst["Profit/Loss %"])
 print("Profit ₹                  : ", worst["Profit/Loss ₹"])
+
+print("="*45)
+print("\t\tPORTFOLIO ALLOCATION")
+print("="*45)
+portfolio["Allocation %"] = (portfolio["Current Value"]/ total_current)*100
+print(portfolio[["Stock","Current Value","Allocation %"]])
+sort_allocation = portfolio.sort_values(by="Allocation %", ascending=False)
+print(sort_allocation)
+print(portfolio["Allocation %"].sum())
+
+print("-"*45)
+print("\t\tLARGEST HOLDING")
+print("-"*45)
+
+largest_holding_index = portfolio["Allocation %"].idxmax()
+largest_holding = portfolio.loc[largest_holding_index]
+print("Stock                : ",largest_holding["Stock"])
+print(f"Allocation        : {largest_holding["Allocation %"]:.2f}%")
