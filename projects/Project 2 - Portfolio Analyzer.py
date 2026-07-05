@@ -8,31 +8,14 @@ portfolio = pd.read_csv("data/portfolio.csv")
 # print(portfolio.info())
 # print(portfolio.isna().sum().sum())
 # print(portfolio.describe())
-print("="*45)
-print("\t\tPORTFOLIO SUMMARY")
-print("="*45)
-print("Total Stocks    : ",portfolio.shape[0])
-portfolio["Invested Amount"] = (portfolio["Qty"] * portfolio["Avg Price"])
-portfolio["Current Value"] = portfolio["Qty"] * portfolio["Current Price"]
-portfolio["Profit/Loss ₹"] = portfolio["Current Value"] - portfolio["Invested Amount"]
-portfolio["Profit /Loss %"] = (portfolio["Profit/Loss ₹"] / portfolio["Invested Amount"]) * 100
-
-total_invested = portfolio["Invested Amount"].sum()
-
-total_current = portfolio["Current Value"].sum()
-
-overall_profit = portfolio["Profit/Loss ₹"].sum()
-
-overall_return = (
-    overall_profit /
-    total_invested
-) * 100
-
-print(f"Total Invested    : ,₹{total_invested:,.2f}")
-
-print("Current Value     : ",total_current)
-
-print("Overall Profit    : ",overall_profit)
-
-print("Overall Return    : ",(overall_profit/total_invested)*100)
-
+# portfolio["Invested Amount"] = (portfolio["Qty"] * portfolio["Avg Price"])
+#
+# portfolio["Current Value"] = (portfolio["Qty"] * portfolio["Current Price"])
+#
+# portfolio["Profit/Loss ₹"] = portfolio["Current Value"] - portfolio["Invested Amount"]
+#
+# portfolio["Profit /Loss %"] = (portfolio["Profit/Loss ₹"]/ portfolio["Invested Amount"]) * 100
+#
+# print(portfolio)
+print(type(portfolio["Qty"]))
+print(type(["Qty"]))
